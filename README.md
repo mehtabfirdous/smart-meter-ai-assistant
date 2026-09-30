@@ -44,8 +44,6 @@ The Smart Meter AI Assistant combines:
 
 
 
-```text
-
 User
 
 &#x20; ↓
