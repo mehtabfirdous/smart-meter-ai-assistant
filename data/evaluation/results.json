@@ -1,0 +1,232 @@
+[
+    {
+        "id": "Q001",
+        "question": "What is HES?",
+        "answer": "[HES Architecture and Operations: Source: 03_hes_architecture.pdf, Page: 1]\n\nHES (Head End System) is a system that communicates with smart meters and manages sessions, commands, responses, events, and configured data collection.\n\nSources:\n[Source: 03_hes_architecture.pdf, Page: 1]\n[Source: 17_mco_procedure.pdf, Page: 1]\n[Source: 19_field_troubleshooting.pdf, Page: 1]",
+        "sources": [
+            {
+                "source": "03_hes_architecture.pdf",
+                "page": 1,
+                "score": 0.6516008377075195
+            },
+            {
+                "source": "17_mco_procedure.pdf",
+                "page": 1,
+                "score": 0.5542576313018799
+            },
+            {
+                "source": "19_field_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.5216221809387207
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q002",
+        "question": "What data does a smart meter provide?",
+        "answer": "According to the provided context, a smart meter provides meter data that includes:\n\n- Cumulative energy\n- Interval readings\n- Voltage\n- Current\n- Power factor\n- Maximum demand\n- Billing registers\n- Event information\n\n[Source: 01_smart_meter_overview.pdf, Page: 1]",
+        "sources": [
+            {
+                "source": "01_smart_meter_overview.pdf",
+                "page": 1,
+                "score": 0.8159518241882324
+            },
+            {
+                "source": "01_smart_meter_overview.pdf",
+                "page": 1,
+                "score": 0.796786904335022
+            },
+            {
+                "source": "10_network_connectivity.pdf",
+                "page": 1,
+                "score": 0.7739614248275757
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q003",
+        "question": "What are the first-level checks for smart meter communication problems?",
+        "answer": "According to the provided context, the first-level checks for smart meter communication problems are:\n\n1. Meter power\n2. Last communication time\n3. Signal information\n4. SIM status\n5. APN configuration\n6. HES errors\n\n[Source: 09_meter_communication_troubleshooting.pdf, Page: 1]",
+        "sources": [
+            {
+                "source": "09_meter_communication_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.8065149188041687
+            },
+            {
+                "source": "09_meter_communication_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.8048416972160339
+            },
+            {
+                "source": "10_network_connectivity.pdf",
+                "page": 1,
+                "score": 0.793407678604126
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q004",
+        "question": "What can cause communication problems between a smart meter and HES?",
+        "answer": "According to the provided context, communication problems between a smart meter and HES can be caused by:\n\n* Network connectivity issues, which requires an available and correctly configured path between the meter and HES [Source: 10_network_connectivity.pdf, Page: 1]\n* Signal quality issues, which should be interpreted using the applicable technology and vendor thresholds, rather than being the only indicator of health [Source: 10_network_connectivity.pdf, Page: 1]\n* Meter power issues, which is one of the first-level checks to perform when troubleshooting communication problems [Source: 09_meter_communication_troubleshooting.pdf, Page: 1]\n* SIM status issues, which is another first-level check to perform when troubleshooting communication problems [Source: 09_meter_communication_troubleshooting.pdf, Page: 1]\n* APN configuration issues, which is also a first-level check to perform when troubleshooting communication problems [Source: 09_meter_communication_troubleshooting.pdf, Page: 1]\n* HES errors, which can also cause communication problems [Source: 09_meter_communication_troubleshooting.pdf, Page: 1]",
+        "sources": [
+            {
+                "source": "03_hes_architecture.pdf",
+                "page": 1,
+                "score": 0.7861477136611938
+            },
+            {
+                "source": "10_network_connectivity.pdf",
+                "page": 1,
+                "score": 0.7551442384719849
+            },
+            {
+                "source": "09_meter_communication_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.7458360195159912
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q005",
+        "question": "What should be checked when a meter has no recent response?",
+        "answer": "According to the provided context, when a meter has no recent response, the first-level checks should include meter power, last communication time, signal information, SIM status, APN configuration, and HES errors. \n\n[Source: 09_meter_communication_troubleshooting.pdf, Page: 1]",
+        "sources": [
+            {
+                "source": "09_meter_communication_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.7726926207542419
+            },
+            {
+                "source": "19_field_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.7696665525436401
+            },
+            {
+                "source": "02_smart_meter_installation.pdf",
+                "page": 1,
+                "score": 0.7359340190887451
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q006",
+        "question": "What is the role of MDM?",
+        "answer": "According to the provided context, MDM (Meter Data Management) receives meter information from upstream systems and provides controlled storage and processing.\n\n[Source: 04_mdm_architecture.pdf, Page: 1]\n\nMDM's primary role is to validate and process meter data, as stated in the document: \"MDM receives meter information from upstream systems and provides controlled storage and processing.\"",
+        "sources": [
+            {
+                "source": "04_mdm_architecture.pdf",
+                "page": 1,
+                "score": 0.7031079530715942
+            },
+            {
+                "source": "01_smart_meter_overview.pdf",
+                "page": 1,
+                "score": 0.6547956466674805
+            },
+            {
+                "source": "04_mdm_architecture.pdf",
+                "page": 1,
+                "score": 0.6397266387939453
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q007",
+        "question": "What remote operations can be performed on a smart meter?",
+        "answer": "According to the provided context, remote operations on a smart meter may include:\n\n* Remote connect (as described in 06_remote_connect_procedure.pdf, Page 1)\n* Remote disconnect (as described in 07_remote_disconnect_procedure.pdf, Page 1)\n* Meter reads\n* Load-profile requests\n* Time synchronization\n* Approved configuration operations\n\nThese operations are part of the remote operations section in 01_smart_meter_overview.pdf, Page 1.\n\nSources:\n[Source: 06_remote_connect_procedure.pdf, Page: 1]\n[Source: 01_smart_meter_overview.pdf, Page: 1]\n[Source: 07_remote_disconnect_procedure.pdf, Page: 1]",
+        "sources": [
+            {
+                "source": "06_remote_connect_procedure.pdf",
+                "page": 1,
+                "score": 0.7561072707176208
+            },
+            {
+                "source": "01_smart_meter_overview.pdf",
+                "page": 1,
+                "score": 0.7403503656387329
+            },
+            {
+                "source": "07_remote_disconnect_procedure.pdf",
+                "page": 1,
+                "score": 0.7402617931365967
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q008",
+        "question": "What is the tariff rate for a domestic consumer in Assam?",
+        "answer": "I could not find enough information in the available knowledge base.\n\nSources:\n[Source: 14_billing_data_processing.pdf, Page: 1]\n[Source: 04_mdm_architecture.pdf, Page: 1]",
+        "sources": [
+            {
+                "source": "14_billing_data_processing.pdf",
+                "page": 1,
+                "score": 0.48455145955085754
+            },
+            {
+                "source": "14_billing_data_processing.pdf",
+                "page": 1,
+                "score": 0.46734458208084106
+            },
+            {
+                "source": "04_mdm_architecture.pdf",
+                "page": 1,
+                "score": 0.45754122734069824
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q009",
+        "question": "What are the important indicators for monitoring smart meter health?",
+        "answer": "According to the provided context, the important indicators for monitoring smart meter health include:\n\n\"Communication indicators include last communication, recent reads, missing intervals, communication failures, and command response history.\"\n[Source: 12_meter_health_monitoring.pdf, Page: 1]\n\nThese indicators provide an operational view of device availability and data quality, which is essential for ensuring the smart meter's health.",
+        "sources": [
+            {
+                "source": "12_meter_health_monitoring.pdf",
+                "page": 1,
+                "score": 0.8248851299285889
+            },
+            {
+                "source": "19_field_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.7494620680809021
+            },
+            {
+                "source": "01_smart_meter_overview.pdf",
+                "page": 1,
+                "score": 0.7445442080497742
+            }
+        ],
+        "status": "success"
+    },
+    {
+        "id": "Q010",
+        "question": "Does network registration guarantee successful smart meter data communication?",
+        "answer": "According to the provided context, [Source: 10_network_connectivity.pdf, Page: 1], network registration does not by itself guarantee successful data communication. [Source: 10_network_connectivity.pdf, Page: 1]\n\nAdditionally, [Source: 10_network_connectivity.pdf, Page: 1] states that data connectivity must be validated using recent successful communication or approved diagnostic information.",
+        "sources": [
+            {
+                "source": "10_network_connectivity.pdf",
+                "page": 1,
+                "score": 0.8445455431938171
+            },
+            {
+                "source": "10_network_connectivity.pdf",
+                "page": 1,
+                "score": 0.7838913202285767
+            },
+            {
+                "source": "09_meter_communication_troubleshooting.pdf",
+                "page": 1,
+                "score": 0.7820339202880859
+            }
+        ],
+        "status": "success"
+    }
+]

@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+requests
+numpy
+pandas
+faiss-cpu
+sentence-transformers
+langchain-text-splitters
+pypdf
+scikit-learn

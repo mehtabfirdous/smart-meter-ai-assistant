@@ -1,0 +1,52 @@
+[
+    {
+        "id": "Q001",
+        "question": "What is HES?",
+        "category": "direct"
+    },
+    {
+        "id": "Q002",
+        "question": "What data does a smart meter provide?",
+        "category": "direct"
+    },
+    {
+        "id": "Q003",
+        "question": "What are the first-level checks for smart meter communication problems?",
+        "category": "direct"
+    },
+    {
+        "id": "Q004",
+        "question": "What can cause communication problems between a smart meter and HES?",
+        "category": "multi_document"
+    },
+    {
+        "id": "Q005",
+        "question": "What should be checked when a meter has no recent response?",
+        "category": "operational"
+    },
+    {
+        "id": "Q006",
+        "question": "What is the role of MDM?",
+        "category": "direct"
+    },
+    {
+        "id": "Q007",
+        "question": "What remote operations can be performed on a smart meter?",
+        "category": "direct"
+    },
+    {
+        "id": "Q008",
+        "question": "What is the tariff rate for a domestic consumer in Assam?",
+        "category": "out_of_knowledge"
+    },
+    {
+        "id": "Q009",
+        "question": "What are the important indicators for monitoring smart meter health?",
+        "category": "direct"
+    },
+    {
+        "id": "Q010",
+        "question": "Does network registration guarantee successful smart meter data communication?",
+        "category": "direct"
+    }
+]

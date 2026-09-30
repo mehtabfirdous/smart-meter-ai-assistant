@@ -1,0 +1,73 @@
+[
+    {
+        "id": "Q001",
+        "expected_sources": [
+            "03_hes_architecture.pdf"
+        ],
+        "answerable": true
+    },
+    {
+        "id": "Q002",
+        "expected_sources": [
+            "01_smart_meter_overview.pdf"
+        ],
+        "answerable": true
+    },
+    {
+        "id": "Q003",
+        "expected_sources": [
+            "09_meter_communication_troubleshooting.pdf"
+        ],
+        "answerable": true
+    },
+    {
+        "id": "Q004",
+        "expected_sources": [
+            "10_network_connectivity.pdf",
+            "09_meter_communication_troubleshooting.pdf"
+        ],
+        "answerable": true
+    },
+    {
+        "id": "Q005",
+        "expected_sources": [
+            "09_meter_communication_troubleshooting.pdf"
+        ],
+        "answerable": true
+    },
+    {
+        "id": "Q006",
+        "expected_sources": [
+            "04_mdm_architecture.pdf"
+        ],
+        "answerable": true
+    },
+    {
+    "id": "Q007",
+    "expected_sources": [
+        "06_remote_connect_procedure.pdf",
+        "07_remote_disconnect_procedure.pdf",
+        "01_smart_meter_overview.pdf"
+    ],
+    "answerable": true
+},
+    {
+        "id": "Q008",
+        "expected_sources": [],
+        "answerable": false
+    },
+    {
+        "id": "Q009",
+        "expected_sources": [
+            "12_meter_health_monitoring.pdf"
+        ],
+        "answerable": true
+    },
+    {
+        "id": "Q010",
+        "expected_sources": [
+            "10_network_connectivity.pdf"
+        ],
+        "answerable": true
+    }
+]

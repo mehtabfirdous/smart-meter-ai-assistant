@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Smart Meter AI Assistant</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f5f7fa;
+
+            color: #1f2937;
+        }
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1000px;
+
+            margin: 40px auto;
+        }
+
+        h1 {
+
+            margin-bottom: 8px;
+
+            font-size: 32px;
+        }
+
+        .subtitle {
+
+            color: #6b7280;
+
+            margin-bottom: 30px;
+        }
+
+        .input-section {
+
+            background: white;
+
+            padding: 24px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 100px;
+
+            resize: vertical;
+
+            padding: 14px;
+
+            border: 1px solid #d1d5db;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-family: inherit;
+        }
+
+        textarea:focus {
+
+            outline: none;
+
+            border-color: #2563eb;
+        }
+
+        .button-row {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 15px;
+        }
+
+        button {
+
+            border: none;
+
+            padding: 11px 22px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+            font-weight: 600;
+        }
+
+        #askButton {
+
+            background: #2563eb;
+
+            color: white;
+        }
+
+        #askButton:hover {
+
+            background: #1d4ed8;
+        }
+
+        #askButton:disabled {
+
+            background: #9ca3af;
+
+            cursor: not-allowed;
+        }
+
+        #clearButton {
+
+            background: #e5e7eb;
+
+            color: #111827;
+        }
+
+        #clearButton:hover {
+
+            background: #d1d5db;
+        }
+
+        .status {
+
+            margin-top: 15px;
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            display: none;
+        }
+
+        .conversation {
+
+            margin-top: 25px;
+        }
+
+        .message {
+
+            background: white;
+
+            padding: 24px;
+
+            margin-bottom: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .user-message {
+
+            border-left: 4px solid #2563eb;
+        }
+
+        .assistant-message {
+
+            border-left: 4px solid #16a34a;
+        }
+
+        .message-title {
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+
+            font-size: 16px;
+        }
+
+        .answer {
+
+            white-space: pre-wrap;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+        .sources {
+
+            margin-top: 25px;
+        }
+
+        .sources h3 {
+
+            margin-bottom: 12px;
+
+            font-size: 18px;
+        }
+
+        .source-item {
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 8px;
+
+            padding: 14px;
+
+            margin-bottom: 10px;
+        }
+
+        .source-item strong {
+
+            display: block;
+
+            margin-bottom: 6px;
+        }
+
+        .source-item div {
+
+            margin-top: 4px;
+
+            color: #4b5563;
+
+            font-size: 14px;
+        }
+
+        .error {
+
+            color: #b91c1c;
+
+            background: #fef2f2;
+
+            border: 1px solid #fecaca;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            margin-top: 15px;
+
+            display: none;
+        }
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 35px;
+
+            color: #6b7280;
+
+            font-size: 13px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>
+        Smart Meter AI Assistant
+    </h1>
+
+    <div class="subtitle">
+        RAG-based knowledge assistant for smart meter operations
+    </div>
+
+
+    <div class="input-section">
+
+        <label for="question">
+            <strong>Ask a question</strong>
+        </label>
+
+        <textarea
+            id="question"
+            placeholder="Example: What is HES?"
+        ></textarea>
+
+
+        <div class="button-row">
+
+            <button
+                id="askButton"
+                onclick="askQuestion()"
+            >
+                Send
+            </button>
+
+            <button
+                id="clearButton"
+                onclick="clearConversation()"
+            >
+                Clear
+            </button>
+
+        </div>
+
+
+        <div
+            id="status"
+            class="status"
+        >
+            Processing...
+        </div>
+
+
+        <div
+            id="error"
+            class="error"
+        ></div>
+
+    </div>
+
+
+    <!-- Conversation history -->
+
+    <div
+        id="conversation"
+        class="conversation"
+    ></div>
+
+
+    <div class="footer">
+
+        Smart Meter AI Assistant · RAG Knowledge System
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const API_URL =
+        "http://127.0.0.1:8000/ask";
+
+
+    function escapeHtml(value) {
+
+        if (
+            value === null ||
+            value === undefined
+        ) {
+
+            return "";
+        }
+
+        return String(value)
+
+            .replace(/&/g, "&amp;")
+
+            .replace(/</g, "&lt;")
+
+            .replace(/>/g, "&gt;")
+
+            .replace(/"/g, "&quot;")
+
+            .replace(/'/g, "&#039;");
+    }
+
+
+    async function askQuestion() {
+
+        const questionInput =
+            document.getElementById("question");
+
+        const askButton =
+            document.getElementById("askButton");
+
+        const status =
+            document.getElementById("status");
+
+        const error =
+            document.getElementById("error");
+
+        const conversation =
+            document.getElementById("conversation");
+
+
+        const question =
+            questionInput.value.trim();
+
+
+        if (!question) {
+
+            error.textContent =
+                "Please enter a question.";
+
+            error.style.display =
+                "block";
+
+            return;
+        }
+
+
+        error.style.display =
+            "none";
+
+        status.style.display =
+            "block";
+
+        askButton.disabled =
+            true;
+
+        askButton.textContent =
+            "Processing...";
+
+
+        /*
+         * Create a user message
+         * immediately.
+         */
+
+        const message =
+            document.createElement("div");
+
+        message.className =
+            "message";
+
+
+        message.innerHTML = `
+
+            <div class="user-message">
+
+                <div class="message-title">
+                    You
+                </div>
+
+                <div class="answer">
+                    ${escapeHtml(question)}
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="assistant-message">
+
+                <div class="message-title">
+                    AI Assistant
+                </div>
+
+                <div class="answer">
+                    Thinking...
+                </div>
+
+            </div>
+
+        `;
+
+
+        conversation.appendChild(message);
+
+
+        /*
+         * Get the answer container
+         * inside the newly created message.
+         */
+
+        const assistantAnswer =
+            message.querySelector(
+                ".assistant-message .answer"
+            );
+
+
+        /*
+         * Clear the input box.
+         */
+
+        questionInput.value =
+            "";
+
+
+        /*
+         * Scroll to the new message.
+         */
+
+        message.scrollIntoView({
+            behavior: "smooth"
+        });
+
+
+        try {
+
+            const response =
+                await fetch(
+                    API_URL,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+
+                            question: question,
+
+                            top_k: 3
+
+                        })
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `API request failed with status ${response.status}`
+                );
+            }
+
+
+            const data =
+                await response.json();
+
+
+            assistantAnswer.textContent =
+                data.answer ||
+                "No answer returned.";
+
+
+            /*
+             * Answerability guard.
+             */
+
+            const refusalMessage =
+                "I could not find enough information in the available knowledge base.";
+
+
+            const isRefusal =
+                data.answer &&
+                data.answer
+                    .trim()
+                    .startsWith(refusalMessage);
+
+
+            /*
+             * Display unique sources
+             * only for supported questions.
+             */
+
+            if (
+                !isRefusal &&
+                data.sources &&
+                data.sources.length > 0
+            ) {
+
+                const displayedSources =
+                    new Set();
+
+
+                const sourcesContainer =
+                    document.createElement("div");
+
+
+                sourcesContainer.className =
+                    "sources";
+
+
+                sourcesContainer.innerHTML =
+                    "<h3>Retrieved Sources</h3>";
+
+
+                data.sources.forEach(
+                    source => {
+
+                        const sourceName =
+                            source.source;
+
+
+                        /*
+                         * Skip duplicate documents.
+                         */
+
+                        if (
+                            displayedSources
+                                .has(sourceName)
+                        ) {
+
+                            return;
+                        }
+
+
+                        displayedSources.add(
+                            sourceName
+                        );
+
+
+                        const sourceItem =
+                            document.createElement(
+                                "div"
+                            );
+
+
+                        sourceItem.className =
+                            "source-item";
+
+
+                        sourceItem.innerHTML = `
+
+                            <strong>
+                                ${escapeHtml(sourceName)}
+                            </strong>
+
+                            <div>
+                                Page ${escapeHtml(source.page)}
+                            </div>
+
+                            <div>
+                                Similarity score:
+                                ${Number(source.score).toFixed(4)}
+                            </div>
+
+                        `;
+
+
+                        sourcesContainer
+                            .appendChild(
+                                sourceItem
+                            );
+
+                    }
+                );
+
+
+                if (
+                    sourcesContainer
+                        .children
+                        .length > 1
+                ) {
+
+                    message
+                        .querySelector(
+                            ".assistant-message"
+                        )
+                        .appendChild(
+                            sourcesContainer
+                        );
+
+                }
+
+            }
+
+        }
+
+        catch (err) {
+
+            console.error(err);
+
+
+            assistantAnswer.textContent =
+                "";
+
+
+            error.textContent =
+                "Unable to connect to the Smart Meter AI Assistant API. Please make sure the FastAPI server is running.";
+
+
+            error.style.display =
+                "block";
+
+        }
+
+        finally {
+
+            status.style.display =
+                "none";
+
+            askButton.disabled =
+                false;
+
+            askButton.textContent =
+                "Send";
+
+            questionInput.focus();
+
+        }
+
+    }
+
+
+    function clearConversation() {
+
+        document.getElementById(
+            "conversation"
+        ).innerHTML = "";
+
+
+        document.getElementById(
+            "question"
+        ).value = "";
+
+
+        document.getElementById(
+            "error"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "status"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "question"
+        ).focus();
+
+    }
+
+
+    /*
+     * Ctrl + Enter sends the question.
+     */
+
+    document
+        .getElementById("question")
+        .addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.ctrlKey &&
+                    event.key === "Enter"
+                ) {
+
+                    askQuestion();
+
+                }
+
+            }
+        );
+
+</script>
+
+</body>
+
+</html>
